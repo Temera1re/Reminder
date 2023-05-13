@@ -1,12 +1,12 @@
 import { spawn } from "child_process";
 import svelte from "rollup-plugin-svelte";
-import commonjs from "@rollup/plugin-commonjs";
 import terser from "@rollup/plugin-terser";
 import resolve from "@rollup/plugin-node-resolve";
 import livereload from "rollup-plugin-livereload";
 import css from "rollup-plugin-css-only";
 import sveltePreprocess from "svelte-preprocess";
 import typescript from "@rollup/plugin-typescript";
+import del from "rollup-plugin-delete";
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -40,6 +40,7 @@ export default {
     dir: "public/build/",
   },
   plugins: [
+    del({ targets: "public/build/*" }),
     svelte({
       preprocess: sveltePreprocess({ sourceMap: !production }),
       compilerOptions: {
@@ -50,18 +51,11 @@ export default {
     // we'll extract any component CSS out into
     // a separate file - better for performance
     css({ output: "bundle.css" }),
-
-    // If you have external dependencies installed from
-    // npm, you'll most likely need these plugins. In
-    // some cases you'll need additional configuration -
-    // consult the documentation for details:
-    // https://github.com/rollup/plugins/tree/master/packages/commonjs
     resolve({
       browser: true,
       dedupe: ["svelte"],
       exportConditions: ["svelte"],
     }),
-    commonjs(),
     typescript({
       sourceMap: !production,
       inlineSources: !production,
