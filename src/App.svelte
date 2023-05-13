@@ -7,30 +7,17 @@
   import Stuff from './stuff/Stuff.svelte'
 
   let currentPage: Page = Page.Reminder
-  let pageReminder: HTMLDivElement
-  let pageCoordinates: HTMLDivElement
-  let pageRandom: HTMLDivElement
-  let pageStuff: HTMLDivElement
+  let currentPageId: number = 0
+  $: pageTranslate = `--scrolloffset: calc(-${currentPageId * 100}vw - ${currentPageId * 2}px)`
 
   onMount(async () => {})
 
   function setPage(page: Page) {
-    if (currentPage == page) return
     currentPage = page
-    switch (page) {
-      case Page.Reminder:
-        pageReminder.scrollIntoView({ behavior: 'smooth' })
-        break
-      case Page.Coordinates:
-        pageCoordinates.scrollIntoView({ behavior: 'smooth' })
-        break
-      case Page.Random:
-        pageRandom.scrollIntoView({ behavior: 'smooth' })
-        break
-      case Page.Stuff:
-        pageStuff.scrollIntoView({ behavior: 'smooth' })
-        break
-    }
+    if (currentPage == Page.Reminder) currentPageId = 0
+    if (currentPage == Page.Coordinates) currentPageId = 1
+    if (currentPage == Page.Random) currentPageId = 2
+    if (currentPage == Page.Stuff) currentPageId = 3
   }
 </script>
 
@@ -38,10 +25,12 @@
   <span class="title">{currentPage}</span>
 </header>
 <main>
-  <div bind:this={pageReminder}><Reminder /></div>
-  <div bind:this={pageCoordinates}><Coordinates /></div>
-  <div bind:this={pageRandom}><Random /></div>
-  <div bind:this={pageStuff}><Stuff /></div>
+  <div class="scrollContainer" style={pageTranslate}>
+    <div><Reminder /></div>
+    <div><Coordinates /></div>
+    <div><Random /></div>
+    <div><Stuff /></div>
+  </div>
 </main>
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <footer>
@@ -79,27 +68,31 @@
   main {
     grid-row: 2;
     width: 100vw;
-    overflow: auto;
+    overflow: hidden;
     background: var(--bg-0);
     display: flex;
-    flex-direction: row;
-    scroll-snap-type: mandatory;
-    scroll-snap-points-y: repeat(100vw);
-    scroll-snap-type: x mandatory;
   }
-  main > div {
-    min-width: calc(100% + 2px);
-    scroll-snap-align: start;
+  main > .scrollContainer {
+    display: flex;
+    flex-direction: row;
+    transition: transform 100ms ease-in-out;
+    transform: translateX(var(--scrolloffset));
+  }
+  main > .scrollContainer > div {
+    min-width: calc(100vw + 2px);
     color: var(--txt-1);
     border-right: 2px solid var(--bg-2);
     padding: 8px;
+    padding-bottom: 68px;
+    overflow: auto;
   }
   footer {
     position: absolute;
     bottom: 0;
     width: 100%;
     height: 60px;
-    background: var(--bg-0);
+    background: hsla(0 0% 9% / 0.95);
+    backdrop-filter: blur(5px);
     display: flex;
     align-items: center;
     justify-content: space-between;

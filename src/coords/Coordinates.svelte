@@ -13,6 +13,12 @@
 Altitude: {coordinates?.coords.altitude}<br />
 Longitude: {coordinates?.coords.longitude}<br />
 Latitude: {coordinates?.coords.latitude}
+<div class="spacer" />
 
 <style>
+  .spacer {
+    min-height: 2000px;
+    width: 100%;
+    background: linear-gradient(#e66465, #9198e5);
+  }
 </style>
