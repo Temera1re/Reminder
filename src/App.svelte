@@ -8,7 +8,7 @@
 
   let currentPage: Page = Page.Reminder
   let currentPageId: number = 0
-  $: pageTranslate = `--scrolloffset: calc(-${currentPageId * 100}vw - ${currentPageId * 2}px)`
+  $: pageTranslate = `--scrolloffset: calc(-${currentPageId * 100})`
 
   onMount(async () => {})
 
@@ -79,9 +79,8 @@
     transform: translateX(var(--scrolloffset));
   }
   main > .scrollContainer > div {
-    min-width: calc(100vw + 2px);
+    min-width: 100vw;
     color: var(--txt-1);
-    border-right: 2px solid var(--bg-2);
     padding: 8px;
     padding-bottom: 68px;
     overflow: auto;

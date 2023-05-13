@@ -31,6 +31,7 @@
     "@capacitor/cli": "^5.0.3",
     "@capacitor/core": "^5.0.3",
     "@capacitor/geolocation": "^5.0.2",
+    "@capacitor/haptics": "^5.0.2",
     "dicom-parser": "^1.8.21",
     "sirv-cli": "^2.0.0",
     "svelte-watch-resize": "^1.0.3"
