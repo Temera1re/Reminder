@@ -1,32 +1,104 @@
 /*#### CSS RESET START ####*/
-*, *::before, *::after {
-	box-sizing: border-box;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 * {
-	margin: 0;
+  margin: 0;
 }
-html, body {
-	height: 100%;
+html,
+body {
+  height: 100%;
 }
 body {
-	line-height: 1.5;
-	-webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  font-family: Arial, Helvetica, sans-serif;
 }
-img, picture, video, canvas, svg {
-	display: block;
-	max-width: 100%;
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
 }
-input, button, textarea, select {
-	font: inherit;
+input,
+button,
+textarea,
+select {
+  font: inherit;
 }
-p, h1, h2, h3, h4, h5, h6 {
-	overflow-wrap: break-word;
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
 }
-#root, #__next {
-	isolation: isolate;
+#root,
+#__next {
+  isolation: isolate;
 }
 /*#### CSS RESET END ####*/
 * {
-	scrollbar-width: thin;
-	user-select: none;
+  scrollbar-width: thin;
+  user-select: none;
+  transition: color ease-in-out 200ms;
+}
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Material Icons'), local('MaterialIcons-Regular'), url(font/md-rounded.woff2) format('woff2');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px; /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+.material-icons.md-18 {
+  font-size: 18px;
+}
+.material-icons.md-24 {
+  font-size: 24px;
+}
+.material-icons.md-30 {
+  font-size: 30px;
+}
+.material-icons.md-36 {
+  font-size: 36px;
+}
+.material-icons.md-48 {
+  font-size: 48px;
+}
+
+body {
+  display: grid;
+  grid-template-rows: auto minmax(0px, 1fr);
 }
