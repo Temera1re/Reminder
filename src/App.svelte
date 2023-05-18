@@ -1,11 +1,12 @@
 <script lang="ts">
   import { onMount } from 'svelte'
   import { Page } from './types/misc'
-  import Reminder from './reminder/Reminder.svelte'
-  import Coordinates from './coords/Coordinates.svelte'
-  import Random from './random/Random.svelte'
-  import Stuff from './stuff/Stuff.svelte'
+  import Reminder from './pages/Reminder.svelte'
+  import Coordinates from './pages/Coordinates.svelte'
+  import Random from './pages/Random.svelte'
+  import Stuff from './pages/Todos.svelte'
   import { StatusBar, Style } from '@capacitor/status-bar'
+  import Todos from './pages/Todos.svelte'
 
   let currentPage: Page = Page.Reminder
   let currentPageId: number = 0
@@ -19,7 +20,7 @@
     if (currentPage == Page.Reminder) currentPageId = 0
     if (currentPage == Page.Coordinates) currentPageId = 1
     if (currentPage == Page.Random) currentPageId = 2
-    if (currentPage == Page.Stuff) currentPageId = 3
+    if (currentPage == Page.Todos) currentPageId = 3
     updateStatusBar()
   }
 
@@ -49,7 +50,7 @@
     <div><Reminder /></div>
     <div><Coordinates /></div>
     <div><Random /></div>
-    <div><Stuff /></div>
+    <div><Todos /></div>
   </div>
 </main>
 <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -66,9 +67,9 @@
     <span class="material-icons md-30">casino</span>
     <span class="text">{Page.Random}</span>
   </div>
-  <div class={currentPage == Page.Stuff ? 'active' : ''} on:click={setPage.bind(this, Page.Stuff)}>
+  <div class={currentPage == Page.Todos ? 'active' : ''} on:click={setPage.bind(this, Page.Todos)}>
     <span class="material-icons md-30">inventory_2</span>
-    <span class="text">{Page.Stuff}</span>
+    <span class="text">{Page.Todos}</span>
   </div>
 </footer>
 
