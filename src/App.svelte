@@ -5,25 +5,45 @@
   import Coordinates from './coords/Coordinates.svelte'
   import Random from './random/Random.svelte'
   import Stuff from './stuff/Stuff.svelte'
+  import { StatusBar, Style } from '@capacitor/status-bar'
 
   let currentPage: Page = Page.Reminder
   let currentPageId: number = 0
-  $: pageTranslate = `--scrolloffset: calc(-${currentPageId * 100})`
+  $: pageTranslate = `--scrolloffset: -${currentPageId * 100}vw`
 
   onMount(async () => {})
 
   function setPage(page: Page) {
+    if (currentPage == page) return
     currentPage = page
     if (currentPage == Page.Reminder) currentPageId = 0
     if (currentPage == Page.Coordinates) currentPageId = 1
     if (currentPage == Page.Random) currentPageId = 2
     if (currentPage == Page.Stuff) currentPageId = 3
+    updateStatusBar()
+  }
+
+  async function updateStatusBar() {
+    try {
+      if (currentPage == Page.Coordinates) {
+        await StatusBar.setOverlaysWebView({ overlay: true })
+        await StatusBar.setStyle({ style: Style.Light })
+      } else {
+        await StatusBar.setOverlaysWebView({ overlay: false })
+        await StatusBar.setStyle({ style: Style.Dark })
+      }
+    } catch (error) {
+      console.warn('Cannot update status bar')
+    }
   }
 </script>
 
-<header>
-  <span class="title">{currentPage}</span>
-</header>
+{#if currentPage != Page.Coordinates}
+  <header>
+    <span class="title">{currentPage}</span>
+  </header>
+{/if}
+
 <main>
   <div class="scrollContainer" style={pageTranslate}>
     <div><Reminder /></div>
@@ -75,15 +95,15 @@
   main > .scrollContainer {
     display: flex;
     flex-direction: row;
-    transition: transform 100ms ease-in-out;
+    transition: transform 0ms ease-in-out;
     transform: translateX(var(--scrolloffset));
   }
   main > .scrollContainer > div {
     min-width: 100vw;
     color: var(--txt-1);
-    padding: 8px;
-    padding-bottom: 68px;
+    padding-bottom: 60px;
     overflow: auto;
+    position: relative;
   }
   footer {
     position: absolute;

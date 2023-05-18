@@ -20,4 +20,8 @@
   --txt-7: hsl(0, 0%, 78%);
   --txt-8: hsl(0, 0%, 79%);
   --txt-9: hsl(0, 0%, 80%);
+
+  --box-shadow-s: 0 2px 8px -2px hsla(var(--bg-0), 0.2);
+  --box-shadow-m: 0 4px 12px -4px hsla(var(--bg-0), 0.3);
+  --box-shadow-l: 0 0 10px hsla(var(--bg-0), 0.2);
 }
