@@ -4,7 +4,6 @@
   import Reminder from './pages/Reminder.svelte'
   import Coordinates from './pages/Coordinates.svelte'
   import Random from './pages/Random.svelte'
-  import Stuff from './pages/Todos.svelte'
   import { StatusBar, Style } from '@capacitor/status-bar'
   import Todos from './pages/Todos.svelte'
 
