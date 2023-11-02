@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
   import { onMount } from 'svelte'
   import { Geolocation } from '@capacitor/geolocation/dist/esm'
   import type { Position } from '@capacitor/geolocation/dist/esm'
@@ -76,4 +76,4 @@
     padding: 4px;
     border: 2px solid var(--bg-0);
   }
-</style>
+</style> -->
