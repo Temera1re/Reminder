@@ -3,23 +3,25 @@
   import { Page } from './types/misc'
   import Reminder from './pages/Reminder.svelte'
   import Coordinates from './pages/Coordinates.svelte'
-  import Random from './pages/Random.svelte'
-  import Stuff from './pages/Todos.svelte'
+  import Random from './pages/Weather.svelte'
   import { StatusBar, Style } from '@capacitor/status-bar'
+  import Music from './pages/Music.svelte'
   import Todos from './pages/Todos.svelte'
 
-  let currentPage: Page = Page.Reminder
-  let currentPageId: number = 0
+  let currentPage: Page
+  let currentPageId: number = 2
   $: pageTranslate = `--scrolloffset: -${currentPageId * 100}vw`
 
-  onMount(async () => {})
+  onMount(async () => {
+    setPage(Page.Weather)
+  })
 
   function setPage(page: Page) {
     if (currentPage == page) return
     currentPage = page
-    if (currentPage == Page.Reminder) currentPageId = 0
+    if (currentPage == Page.Music) currentPageId = 0
     if (currentPage == Page.Coordinates) currentPageId = 1
-    if (currentPage == Page.Random) currentPageId = 2
+    if (currentPage == Page.Weather) currentPageId = 2
     if (currentPage == Page.Todos) currentPageId = 3
     updateStatusBar()
   }
@@ -47,25 +49,26 @@
 
 <main>
   <div class="scrollContainer" style={pageTranslate}>
-    <div><Reminder /></div>
+    <div><Music /></div>
     <div><Coordinates /></div>
     <div><Random /></div>
+    <!--<div><Todos /></div>-->
     <div><Todos /></div>
   </div>
 </main>
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <footer>
-  <div class={currentPage == Page.Reminder ? 'active' : ''} on:click={setPage.bind(this, Page.Reminder)}>
-    <span class="material-icons md-30">edit_notifications</span>
-    <span class="text">{Page.Reminder}</span>
+  <div class={currentPage == Page.Music ? 'active' : ''} on:click={setPage.bind(this, Page.Music)}>
+    <span class="material-icons md-30">headphones</span>
+    <span class="text">{Page.Music}</span>
   </div>
   <div class={currentPage == Page.Coordinates ? 'active' : ''} on:click={setPage.bind(this, Page.Coordinates)}>
     <span class="material-icons md-30">explore</span>
     <span class="text">{Page.Coordinates}</span>
   </div>
-  <div class={currentPage == Page.Random ? 'active' : ''} on:click={setPage.bind(this, Page.Random)}>
-    <span class="material-icons md-30">casino</span>
-    <span class="text">{Page.Random}</span>
+  <div class={currentPage == Page.Weather ? 'active' : ''} on:click={setPage.bind(this, Page.Weather)}>
+    <span class="material-icons md-30">routine</span>
+    <span class="text">{Page.Weather}</span>
   </div>
   <div class={currentPage == Page.Todos ? 'active' : ''} on:click={setPage.bind(this, Page.Todos)}>
     <span class="material-icons md-30">inventory_2</span>
@@ -96,7 +99,7 @@
   main > .scrollContainer {
     display: flex;
     flex-direction: row;
-    transition: transform 0ms ease-in-out;
+    transition: transform 200ms ease-in-out;
     transform: translateX(var(--scrolloffset));
   }
   main > .scrollContainer > div {

@@ -1,6 +1,8 @@
 ## Setup
 
 npm i
+<br>
+npx cap add android
 
 ## Development
 

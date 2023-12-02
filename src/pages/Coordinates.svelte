@@ -13,9 +13,8 @@
     //@ts-ignore
     let leaflet = L
 
-    map = leaflet
-      .map(mapElement, { zoomControl: false })
-      .setView([coordinates.coords.latitude, coordinates.coords.longitude], 13)
+    map = leaflet.map(mapElement, { zoomControl: false })
+    resetMap()
     leaflet
       .tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
@@ -36,7 +35,11 @@
 
   function resetMap() {
     if (map) {
-      map.setView([coordinates.coords.latitude, coordinates.coords.longitude], 13)
+      if (coordinates?.coords) {
+        map.setView([coordinates.coords.latitude, coordinates.coords.longitude], 13)
+      } else {
+        map.setView([0, 0], 13)
+      }
     }
   }
 

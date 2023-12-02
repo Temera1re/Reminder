@@ -1,10 +1,13 @@
 <script lang="ts">
-  import { onMount } from "svelte";
+  import { onMount } from 'svelte'
 
-  onMount(async () => {});
+  onMount(async () => {})
 </script>
 
-<p>Fancy reminder part xD</p>
+<p>Fancy reminder part222 xD</p>
 
 <style>
+  p {
+    color: red;
+  }
 </style>
