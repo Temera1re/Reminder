@@ -1,9 +1,8 @@
 <script lang="ts">
   import { onMount } from 'svelte'
   import { Page } from './types/misc'
-  import Reminder from './pages/Reminder.svelte'
   import Coordinates from './pages/Coordinates.svelte'
-  import Random from './pages/Weather.svelte'
+  import Weather from './pages/Weather.svelte'
   import { StatusBar, Style } from '@capacitor/status-bar'
   import Music from './pages/Music.svelte'
   import Todos from './pages/Todos.svelte'
@@ -51,7 +50,7 @@
   <div class="scrollContainer" style={pageTranslate}>
     <div><Music /></div>
     <div><Coordinates /></div>
-    <div><Random /></div>
+    <div><Weather /></div>
     <!--<div><Todos /></div>-->
     <div><Todos /></div>
   </div>
